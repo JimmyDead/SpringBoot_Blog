@@ -1,0 +1,109 @@
+<DOCTYPE html>
+    <html xmlns:th="http://thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <title>MyCodeBlog</title>
+        <!-- CSS DO BOTSTRAP -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+              crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+    </head>
+    <body>
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/posts">MyCodeBlog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/posts" target="_blank">Início<span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/newpost" target="_blank">Novo Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">Noticías</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">Novidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">Contato</a>
+                    </li>
+
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Procurar" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Procurar</button>
+                </form>
+            </div>
+        </nav>
+
+    </header>
+    <section>
+
+        <div class="container" style="width: 60%; padding-bottom: 30px;">
+            <nav aria-label="breadcrumb" style="margin-top: 60px;">
+                <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
+                    <li class="breadcrumb-item" aria-current="page"><a href="/posts">Início</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Novo Post</li>
+                </ol>
+            </nav>
+
+            <div>
+                <th:block th:include="mensagemValidacao"></th:block>
+
+                <form method="post">
+                    <!-- o metodo é post porque no metodo savePost da classe controller o seu RequestMethod é POST -->
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="titulo" placeholder="Título *">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="autor" placeholder="Autor *">
+                    </div>
+
+                    <textarea id ="summernote" type="text" class="form-control" name="texto"
+                              placeholder="Texto *"></textarea>
+
+                    <small class="form-text text-muted">(*) Campos obrigatórios</small>
+
+                    <button type="submit" class="btn btn-dark" style="margin-top: 10px;">Publicar</button>
+                    <a href="/posts" class="btn btn-dark" role="button" style="margin-top: 10px;">Cancelar</a>
+
+                </form>
+
+            </div>
+        </div>
+
+    </section>
+    <script>
+$('#summernote').summernote({
+placeholder: 'Texto *',
+tabsize: 2,
+height: 300
+});
+
+    </script>
+
+    </body>
+
+    </html>
+</DOCTYPE>
