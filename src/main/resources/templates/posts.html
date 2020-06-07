@@ -1,0 +1,81 @@
+<DOCTYPE html>
+    <html xmlns:th="http://thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <title>MyCodeBlog</title>
+        <!-- CSS DO BOTSTRAP -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+              crossorigin="anonymous">
+    </head>
+    <body>
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/posts">MyCodeBlog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/posts" target="_blank">Início<span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/newpost" target="_blank">Novo Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">Noticías</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">Novidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">Contato</a>
+                    </li>
+
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Procurar" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Procurar</button>
+                </form>
+            </div>
+        </nav>
+
+    </header>
+    <section>
+
+        <div class="container" style="width: 60%; padding-bottom: 30px;">
+
+            <div class="card shadow-sm bg-white rounded" style="width: 90%;margin-top: 10%;" th:each="post : ${posts}">
+
+                <img th:src="@{https://i2.wp.com/socientifica.com.br/wp-content/uploads/2019/12/Computa%C3%A7%C3%A3o-quantica-scaled.png?fit=900%2C484&ssl=1}"
+                     style="width: 100%;height: 250px;" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-subtitle mb-2 text-muted" style="font-size: 0.8rem;">
+                        <span th:text="${post.autor}"></span>
+                        <span th:text="${post.data}"></span>
+                    </p>
+
+                    <a><h5 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"><span
+                            th:text="${post.titulo}"></span></h5></a>
+                    <p class="card-text"><span th:utext="${#strings.abbreviate(post.texto,200)}"></span></p>
+                    <a th:href="${(#mvc.url('CBC#getPostDetails').arg(0, post.id)).build()}" target="_blank"
+                       class="btn btn-dark">Veja mais</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    </body>
+    </html>
+</DOCTYPE>
